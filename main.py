@@ -10,8 +10,8 @@ if __name__ == "__main__":
 
         try:
 
-            attempt = input(
-                "Type a row number, a column number, and a letter (e.g., 1 2 A): ")
+            attempt = list(input(
+                "Type a row number, a column number, and a letter (e.g., 1 2 A): "))
 
             x = int(attempt[0])  # row
             y = int(attempt[2])  # col
@@ -35,23 +35,18 @@ if __name__ == "__main__":
                 display_board()
 
             else:
-                board[x-1][y-1] = PURPLE + val + NORMAL
+                board[x-1][y-1] = PURPLE + str(val) + NORMAL
                 display_board()
+
+            if restriction.all_cells_filled():
+                print("Good game!")
+                game_on = False
 
         except:
 
             if len(attempt) < 5 or len(attempt) > 5:
                 print("Length of input is less than 5! Try again.")
+                display_board()
             else:
                 print("Invalid input.")
                 display_board()
-
-        finally:
-            '''
-            finally, after each try or except round, check if all cells are filled. If yes, print
-            "Good game!" and stop the game.
-            '''
-
-            if restriction.all_cells_filled():
-                print("Good game!")
-                game_on = False
