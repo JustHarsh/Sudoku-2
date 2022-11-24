@@ -34,13 +34,15 @@ if __name__ == "__main__":
                 print("Horizontal rule violated! Try again.")
                 display_board()
 
+            elif restriction.all_cells_filled():
+                print("Good game!")
+                game_on = False
+
             else:
                 board[x-1][y-1] = PURPLE + str(val) + NORMAL
                 display_board()
 
-            if restriction.all_cells_filled():
-                print("Good game!")
-                game_on = False
+
 
         except:
 
