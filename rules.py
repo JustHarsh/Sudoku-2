@@ -1,6 +1,7 @@
 from getBoard import board
 
-class Errors:
+
+class Rules:
 
     def __init__(self, row, col, value):
         self.row = row
@@ -8,7 +9,14 @@ class Errors:
         self.value = value
 
     def square_rule_violated(self, row, col, value):
-        pass
+        _row = row//3
+        _col = col//3
+
+        for i in range(_row * 3, _row * 3 + 3):
+            for j in range(_col * 3, _col * 3 + 3):
+                if board[i][j] == value:
+                    return True
+        return False
 
     def horizontal_rule_violated(self, row, col, value):
 
@@ -19,14 +27,15 @@ class Errors:
 
     def vertical_rule_violated(self, row, col, value):
 
-        for i in range(0,4):
-            if value in board[i][col-1]:
+        for i in range(len(board)):
+            if value == board[i][col-1]:
                 return True
 
         return False
-    
 
     def all_cells_filled(self):
 
-        if " " not in board[0] and " " not in board[1] and " " not in board[2] and " " not in board[3]:
-            return True
+        for i in range(len(board)):
+            if " " in board[i]:
+                return False
+        return True
