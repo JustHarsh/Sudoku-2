@@ -1,6 +1,5 @@
 from rules import Rules
 from getBoard import board, display_board
-from custom_functions import Input_manipulation
 
 if __name__ == "__main__":
 
@@ -13,14 +12,10 @@ if __name__ == "__main__":
 
             attempt = input(
                 "Type a row number, a column number, and a letter (e.g., 1 2 A): ")
-            strip = Input_manipulation(attempt)
 
-            # tuple(strip.fstrip(attempt)) = ("1", "2", "A")
-            attempt_cleaned = tuple(strip.fstrip(attempt))
-
-            x = int(attempt_cleaned[0])  # row
-            y = int(attempt_cleaned[1])  # col
-            val = int(attempt_cleaned[2])  # value
+            x = int(attempt[0])  # row
+            y = int(attempt[2])  # col
+            val = int(attempt[4])  # value
 
             restriction = Rules(x, y, val)
 
