@@ -42,8 +42,6 @@ if __name__ == "__main__":
                 board[x-1][y-1] = PURPLE + str(val) + NORMAL
                 display_board()
 
-
-
         except:
 
             if len(attempt) < 5 or len(attempt) > 5:
