@@ -9,11 +9,11 @@ class Rules:
         self.value = value
 
     def square_rule_violated(self, row, col, value):
-        _row = row//3
-        _col = col//3
+        starter_row = (row-1)//3
+        starter_col = (col-1)//3
 
-        for i in range(_row * 3, _row * 3 + 3):
-            for j in range(_col * 3, _col * 3 + 3):
+        for i in range(starter_row * 3, starter_row * 3 + 3):
+            for j in range(starter_col * 3, starter_col * 3 + 3):
                 if board[i][j] == value:
                     return True
         return False
