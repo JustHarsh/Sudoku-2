@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
         except:
 
-            if len(attempt) < 5 or len(attempt) > 5:
+            if len(attempt) < 5:
                 print("Length of input is less than 5! Try again.")
                 display_board()
             else:
