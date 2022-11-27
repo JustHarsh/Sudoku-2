@@ -1,11 +1,13 @@
 from rules import Rules
-from getBoard import board, display_board
+from getBoard import board, fake_board, display_board, displayFake_board
+from highlight import NORMAL, RED, PURPLE, GREEN, highlightNumber
 
 
 if __name__ == "__main__":
 
     game_on = True
     possible_values = []
+
     # example board - [[' ', ' ', 2, ' ', ' ', 1, ' ', 4, ' '], [6, ' ', 4, ' ', ' ', ' ', ' ', ' ', 8], [' ', ' ', ' ', ' ', 6, ' ', 5, ' ', ' '], [1, 7, ' ', 2, ' ', 3, ' ', 9, ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', 3, ' ', 6, ' ', 9, ' ', 8, 7],[' ', ' ', 3, ' ', 9, ' ', ' ', ' ', ' '], [9, ' ', ' ', ' ', ' ', ' ', 6, ' ', 4],[' ', 1, ' ', 7, ' ', ' ', 3, ' ', ' ']]
 
     while game_on:
@@ -13,47 +15,24 @@ if __name__ == "__main__":
         try:
 
             attempt = input(
-                "Type a row number, a column number, and a letter (e.g., 1 2 9): ")
-            
+                '''Type a row number, a column number, and a value (e.g., 1 2 9) (If you
+type only one number, all the cells having the number will be highlighted
+in the board.) (If you want a hint, type h): ''')
+                        
             attempt_cleaned = attempt.split(" ")
-            
-            if attempt != 'h':
 
-                x = int(attempt_cleaned[0])  # row
-                assert x in range(1, 10)
+            assert len(attempt_cleaned) == 3
 
-                y = int(attempt_cleaned[1])  # col
-                assert y in range(1, 10)
+            if len(attempt) == 1 and attempt != "h":
 
-                val = int(attempt_cleaned[2])  # value
-                assert val in range(1, 10)
+                assert attempt_cleaned[0].isdigit()
+                
+                color_number = highlightNumber(attempt_cleaned[0])
+                color_number.highLight(fake_board, attempt_cleaned[0])
+                displayFake_board(fake_board)
 
-                assert board[x-1][y-1] == " "
+                del color_number
 
-                restriction = Rules(x, y, val)
-
-                PURPLE = "\033[0;35m"
-                NORMAL = "\033[0m"
-
-                if restriction.square_rule_violated(x, y, val):
-                    print("Square rule violated! Try again.")
-                    display_board()
-
-                elif restriction.vertical_rule_violated(x, y, val):
-                    print("Vertical rule violated! Try again.")
-                    display_board()
-
-                elif restriction.horizontal_rule_violated(x, y, val):
-                    print("Horizontal rule violated! Try again.")
-                    display_board()
-
-                elif restriction.all_cells_filled():
-                    print("Good game!")
-                    game_on = False
-
-                else:
-                    board[x-1][y-1] = PURPLE + str(val) + NORMAL
-                    display_board()
             
             elif attempt == "h":
 
@@ -62,6 +41,8 @@ if __name__ == "__main__":
                 hint_cleaned = hint.split(" ")
 
                 assert len(hint) == 3
+                assert len(hint_cleaned) == 2
+
                 assert hint_cleaned[0].isdigit()
                 assert hint_cleaned[1].isdigit()
 
@@ -97,46 +78,128 @@ if __name__ == "__main__":
 
                 possible_values.clear()
 
+                        
+            elif len(attempt) == 5:
 
+                assert attempt_cleaned[0].isdigit(), attempt_cleaned[1].isdigit()
+                
+                x = int(attempt_cleaned[0])  # row
+                assert x in range(1, 10)
+
+                y = int(attempt_cleaned[1])  # col
+                assert y in range(1, 10)
+
+                val = int(attempt_cleaned[2])  # value
+                assert val in range(1, 10)
+
+                assert board[x-1][y-1] == " "
+
+                restriction = Rules(x, y, val)
+
+                if restriction.square_rule_violated(x, y, val):
+                    print(RED + "Square rule violated! Try again." + NORMAL)
+                    print()
+                    display_board()
+
+                elif restriction.vertical_rule_violated(x, y, val):
+                    print(RED + "Vertical rule violated! Try again." + NORMAL)
+                    print()
+                    display_board()
+
+                elif restriction.horizontal_rule_violated(x, y, val):
+                    print(RED + "Horizontal rule violated! Try again." + NORMAL)
+                    print()
+                    display_board()
+
+                elif restriction.all_cells_filled():
+                    print(GREEN + "Good game!" + NORMAL)
+                    game_on = False
+
+                else:
+                    board[x-1][y-1] = PURPLE + str(val) + NORMAL
+                    print()
+                    display_board()
+
+                    fake_board[x-1][y-1] = str(val)
 
         except:
 
-            if attempt != "h":
+            if len(attempt) != 1:
 
-                if (len(attempt) != 5):
-                    print("Your input is Wrong! The input length is not 5.")
+                if (not attempt_cleaned[0].isdigit()) or (not attempt_cleaned[1].isdigit()) or (not attempt_cleaned[2].isdigit()):
+                    print(RED + "Your input is wrong! You must enter numbers ONLY." + NORMAL)
+                    print()
+                    display_board()
+
+                elif len(attempt) != 5:
+                    print(RED + "Your input is Wrong! The input length is not 5." + NORMAL)
+                    print()
+                    display_board()
+
+                elif len(attempt_cleaned) != 3:
+                    print(RED + "Your input is Wrong! You did not input three separate numbers." + NORMAL)
+                    print()
                     display_board()
                 
-                elif (x not in range(1, 10)):
-                    print("Your input is Wrong! The first input value is wrong.")
+                elif x not in range(1, 10):
+                    print(RED + "Your input is Wrong! The first input value is wrong." + NORMAL)
+                    print()
                     display_board()
                 
-                elif (y not in range(1, 10)):
-                    print("Your input is Wrong! The second input value is wrong.")
+                elif y not in range(1, 10):
+                    print(RED + "Your input is Wrong! The second input value is wrong." + NORMAL)
+                    print()
                     display_board()
                 
-                elif (val not in range(1, 10)):
-                    print("Your input is Wrong! The third input value is wrong.")
+                elif val not in range(1, 10):
+                    print(RED + "Your input is Wrong! The third input value is wrong." + NORMAL)
+                    print()
                     display_board()
                 
-                elif (board[x-1][y-1] != " "):
-                    print("Your input is Wrong! The spot is not empty.")
+                elif board[x-1][y-1] != " ":
+                    print(RED + "Your input is Wrong! The spot is not empty." + NORMAL)
+                    print()
                     display_board()
+            
+            elif len(attempt) == 1 and attempt != "h":
+
+                if not attempt_cleaned[0].isdigit():
+                    print(RED + "Your input is wrong! If you want a hint then type 'h'." + NORMAL)
+                    print()
+                    displayFake_board(fake_board)
             
             elif attempt == "h":
 
-                if len(hint) != 3:
-                    print("Your input is Wrong! The input length is not 3.")
+                if (not attempt_cleaned[0].isdigit()) or (not attempt_cleaned[1].isdigit()):
+                    print(RED + "Your input is wrong! You must enter numbers ONLY." + NORMAL)
+                    print()
+                    display_board()
+
+                elif len(hint) != 3:
+                    print(RED + "Your input is Wrong! The input length is not 3." + NORMAL)
+                    print()
+                    display_board()
+                
+                elif len(hint_cleaned) != 3:
+                    print(RED + "Your input is Wrong! You did not input two separate numbers." + NORMAL)
+                    print()
+                    display_board()
                 
                 elif hintx not in range(1, 10):
-                    print("Your input is Wrong! The first input value is wrong.")
-                
+                    print(RED + "Your input is Wrong! The first input value is wrong." + NORMAL)
+                    print()
+                    display_board()
+
+                                 
                 elif hinty not in range(1, 10):
-                    print("Your input is Wrong! The second input value is wrong.")
-                
-                elif board[hintx][hinty] != " ":
-                    print("Your input is Wrong! The spot is not empty.")
+                    print(RED + "Your input is Wrong! The second input value is wrong." + NORMAL)
+                    print()
+                    display_board()
+                                   
+                elif board[hintx-1][hinty-1] != " ":
+                    print(RED + "Your input is Wrong! The spot is not empty." + NORMAL)
+                    print()
+                    display_board()
 
-
-
-            
+        # finally:
+        #     pass
