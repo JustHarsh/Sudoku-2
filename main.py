@@ -8,8 +8,6 @@ if __name__ == "__main__":
     game_on = True
     possible_values = []
 
-    # example board - [[' ', ' ', 2, ' ', ' ', 1, ' ', 4, ' '], [6, ' ', 4, ' ', ' ', ' ', ' ', ' ', 8], [' ', ' ', ' ', ' ', 6, ' ', 5, ' ', ' '], [1, 7, ' ', 2, ' ', 3, ' ', 9, ' '], [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], [' ', 3, ' ', 6, ' ', 9, ' ', 8, 7],[' ', ' ', 3, ' ', 9, ' ', ' ', ' ', ' '], [9, ' ', ' ', ' ', ' ', ' ', 6, ' ', 4],[' ', 1, ' ', 7, ' ', ' ', 3, ' ', ' ']]
-
     while game_on:
 
         try:
@@ -200,6 +198,3 @@ in the board.) (If you want a hint, type h): ''')
                     print(RED + "Your input is Wrong! The spot is not empty." + NORMAL)
                     print()
                     display_board()
-
-        # finally:
-        #     pass
