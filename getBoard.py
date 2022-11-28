@@ -1,15 +1,20 @@
-# to avoid circular imports
+'''
+To display board to user.
+'''
 
-board = eval(input("Enter your 2-d board (9x9): "))
+board = eval(input("Enter your 2-d board (9x9): ")) # user input
 
-fake_board = [[], [], [], [], [], [], [], [], []]
+# to create a clone of the user input that will be used to highlight numbers on the board upon appropriate user input.
+
+fake_board = [[], [], [], [], [], [], [], [], []] 
 
 for i in range(len(board)):
     for j in range(len(board[i])):
         fake_board[i].append(board[i][j])
 
 def display_board():
-
+    '''displaying the board entered by the user.'''
+    
     print('  {:2}{:2}{:2}{:2}{:2}{:2}{:2}{:2}{:2}'.format(
         1, 2, 3, 4, 5, 6, 7, 8, 9
     ))
@@ -107,6 +112,8 @@ display_board()
 
 
 def displayFake_board(fakeBoard):
+
+    '''displaying the clone of the board entered by the user. It will not have any coloring whatsoever.'''
 
     print('  {:2}{:2}{:2}{:2}{:2}{:2}{:2}{:2}{:2}'.format(
         1, 2, 3, 4, 5, 6, 7, 8, 9
