@@ -110,7 +110,9 @@ in the board.) (If you want a hint, type h): ''')
                     display_board()
 
                 elif restriction.all_cells_filled():
-                    print(GREEN + "Good game!" + NORMAL)
+                    print(GREEN + "===================================" + NORMAL)
+                    print(GREEN + "You solved the sudoku! Congratulations!!!!" + NORMAL)
+                    print(GREEN + "===================================" + NORMAL)
                     game_on = False
 
                 else:
