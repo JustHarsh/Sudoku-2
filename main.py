@@ -5,7 +5,6 @@ from highlight import NORMAL, RED, PURPLE, GREEN, highlightNumber
 
 # [[' ', ' ', 2, ' ', ' ', 1, ' ', 4, ' '], [6, ' ', 4, ' ', ' ', ' ', ' ', ' ', 8], [' ', ' ', ' ', ' ', 6, ' ', 5, ' ', ' '], [1, 7, ' ', 2, ' ', 3, ' ', 9, ' '], [' ', ' ', ' ', ' ', ' ', ' ',' ', ' ', ' '], [' ', 3, ' ', 6, ' ', 9, ' ', 8, 7], [' ', ' ', 3, ' ', 9, ' ', ' ', ' ', ' '], [9, ' ', ' ', ' ', ' ', ' ', 6, ' ', 4], [' ', 1, ' ', 7, ' ', ' ', 3, ' ', ' ']]
 
-
 if __name__ == "__main__": # when the program is run...
 
     game_on = True
@@ -63,18 +62,18 @@ in the board.) (If you want a hint, type h): ''')
                     print()
                     display_board()
 
-                elif restriction.all_cells_filled():
-                    print(GREEN + "======================================================" + NORMAL)
-                    print(GREEN + "You solved the sudoku! Congratulations!!!!" + NORMAL)
-                    print(GREEN + "======================================================" + NORMAL)
-                    game_on = False
-
                 else:
                     board[x-1][y-1] = PURPLE + str(val) + NORMAL
                     print()
                     display_board()
 
                     fake_board[x-1][y-1] = str(val)
+                
+                if restriction.all_cells_filled():
+                    print(GREEN + "======================================================" + NORMAL)
+                    print(GREEN + "You solved the sudoku! Congratulations!!!!" + NORMAL)
+                    print(GREEN + "======================================================" + NORMAL)
+                    game_on = False
 
 
             elif len(attempt) == 1 and attempt != "h":
