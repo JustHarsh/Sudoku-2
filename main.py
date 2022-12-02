@@ -26,17 +26,20 @@ in the board.) (If you want a hint, type h): ''')
             if len(attempt) in range(2, 6):
                 
                 # check if length of attempt_cleaned is 3. If assertion fails, skip to except block.
-                assert len(attempt_cleaned) == 3 
+                assert len(attempt_cleaned) == 3
+
+                # to check if user entered digits
+                assert attempt_cleaned[0].isdigit() 
+                assert attempt_cleaned[1].isdigit()
+                assert attempt_cleaned[2].isdigit()
 
                 # check if user entered digits. If assertion fails, skip to except block.
-                assert attempt_cleaned[0].isdigit(), attempt_cleaned[1].isdigit()
-                
                 x = int(attempt_cleaned[0])  # row
                 assert x in range(1, 10) # to check if x is in between 1 and 9. If not, skip to except block.
-
+                
                 y = int(attempt_cleaned[1])  # col
                 assert y in range(1, 10) # to check if y is in between 1 and 9. If not, skip to except block.
-
+                
                 val = int(attempt_cleaned[2])  # value
                 assert val in range(1, 10) # to check if value is in between 1 and 9. If not, skip to except block.
 
@@ -61,9 +64,9 @@ in the board.) (If you want a hint, type h): ''')
                     display_board()
 
                 elif restriction.all_cells_filled():
-                    print(GREEN + "===================================" + NORMAL)
+                    print(GREEN + "======================================================" + NORMAL)
                     print(GREEN + "You solved the sudoku! Congratulations!!!!" + NORMAL)
-                    print(GREEN + "===================================" + NORMAL)
+                    print(GREEN + "======================================================" + NORMAL)
                     game_on = False
 
                 else:
@@ -143,44 +146,47 @@ in the board.) (If you want a hint, type h): ''')
                 if len(attempt) != 5: # run when assert len(attempt) == 5 is false
                     print(RED + "Your input is Wrong! The input length is not 5." + NORMAL)
                     print()
-                    display_board()
 
                 elif len(attempt_cleaned) != 3: # run when assert len(attempt_cleaned) == 3 is false
                     print(RED + "Your input is Wrong! You did not input three separate numbers." + NORMAL)
                     print()
-                    display_board()
-
-                # run when assertion to check if user entered numbers fails.
-                elif (not attempt_cleaned[0].isdigit()) or (not attempt_cleaned[1].isdigit()) or (not attempt_cleaned[2].isdigit()):
-                    print(RED + "Your input is wrong! You must enter numbers ONLY." + NORMAL)
-                    print()
-                    display_board()
                 
+                # checking if the user entered numbers
+                elif not attempt_cleaned[0].isdigit():
+                    print(RED + "Your input is Wrong! The first input value is wrong." + NORMAL)
+                    print()
+                
+                elif not attempt_cleaned[1].isdigit():
+                    print(RED + "Your input is Wrong! The second input value is wrong." + NORMAL)
+                    print()
+                
+                elif not attempt_cleaned[2].isdigit():
+                    print(RED + "Your input is Wrong! The third input value is wrong." + NORMAL)
+                    print()
+
                 # run when row is not in the bounds of the board.
                 elif x not in range(1, 10):
                     print(RED + "Your input is Wrong! The first input value is wrong." + NORMAL)
                     print()
-                    display_board()
 
                 # run when column is not in the bounds of the board.             
                 elif y not in range(1, 10):
                     print(RED + "Your input is Wrong! The second input value is wrong." + NORMAL)
                     print()
-                    display_board()
-                
+
                 # run when assertion to check if value is withing the permitted range of allowed numbers fails.
                 elif val not in range(1, 10):
                     print(RED + "Your input is Wrong! The third input value is wrong." + NORMAL)
                     print()
-                    display_board()
                 
                 # runs when the spot user wants to enter a value is already occupied.
                 elif board[x-1][y-1] != " ":
                     print(RED + "Your input is Wrong! The spot is not empty." + NORMAL)
                     print()
-                    display_board()
+
+                display_board()
             
-            elif len(attempt) == 1 and attempt != "h": # if user types just one letter.
+            elif len(attempt) == 1 and attempt != "h": # if user types just one letter or number.
 
                 if not attempt_cleaned[0].isdigit(): # if user enters a letter instead of number
                     print(RED + "Your input is wrong! If you want a hint then type h." + NORMAL)
@@ -193,36 +199,36 @@ in the board.) (If you want a hint, type h): ''')
                 if len(hint) != 3:
                     print(RED + "Your input is Wrong! The input length is not 3." + NORMAL)
                     print()
-                    display_board()
 
                 # when user enters numbers without space
                 elif len(hint_cleaned) != 2:
                     print(RED + "Your input is Wrong! You did not input two separate numbers." + NORMAL)
                     print()
-                    display_board()
 
-                # when one or both row, col values is/are letters.
-                elif (not hint_cleaned[0].isdigit()) or (not hint_cleaned[1].isdigit()):
-                    print(RED + "Your input is wrong! You must enter numbers ONLY." + NORMAL)
+                # checking if the user entered numbers
+                elif not hint_cleaned[0].isdigit():
+                    print(RED + "Your input is Wrong! The first input value is wrong." + NORMAL)
                     print()
-                    display_board()
                 
-                # run when row value is outside the bounds of the board.
+                elif not hint_cleaned[1].isdigit():
+                    print(RED + "Your input is Wrong! The second input value is wrong." + NORMAL)
+                    print()
+
+                # run when row value is outside the bounds of the board.             
                 elif hintx not in range(1, 10):
                     print(RED + "Your input is Wrong! The first input value is wrong." + NORMAL)
                     print()
-                    display_board()
-
-                # run when row value is outside the bounds of the board.             
+                    
+                # run when column value is outside the bounds of the board.             
                 elif hinty not in range(1, 10):
                     print(RED + "Your input is Wrong! The second input value is wrong." + NORMAL)
                     print()
-                    display_board()
 
                 # run when user wants a hint at a place that is already occupied.                   
                 elif board[hintx-1][hinty-1] != " ":
                     print(RED + "Your input is Wrong! The spot is not empty." + NORMAL)
                     print()
-                    display_board()
+
+                display_board()
         # finally:
         #     pass
