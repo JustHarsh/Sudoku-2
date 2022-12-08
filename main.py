@@ -1,3 +1,5 @@
+'''main.py -> program is run from here.'''
+
 from rules import Rules
 from getBoard import board, fake_board, display_board, displayFake_board
 from highlight import NORMAL, RED, PURPLE, GREEN, highlightNumber
