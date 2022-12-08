@@ -118,21 +118,19 @@ in the board.) (If you want a hint, type h): ''')
                     # if no rule is violated by i, then append it to possible_values
 
                     if hints.square_rule_violated(hintx, hinty, i):
-                        del hints
                         continue
 
                     elif hints.vertical_rule_violated(hintx, hinty, i):
-                        del hints
                         continue
 
                     elif hints.horizontal_rule_violated(hintx, hinty, i):
-                        del hints
                         continue
 
                     else:
                         possible_values.append(i)
-                        del hints # delete instance
-                
+
+                    del hints # deleting instance
+
                 print("Possible values for ({}, {}) are {}".format(hintx, hinty, possible_values)) # display hint
 
                 # clear the list so that the next time user wants a hint they do not get the old hint too. 
