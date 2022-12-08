@@ -2,7 +2,7 @@ from rules import Rules
 from getBoard import board, fake_board, display_board, displayFake_board
 from highlight import NORMAL, RED, PURPLE, GREEN, highlightNumber
 
-
+# example board
 # [[' ', ' ', 2, ' ', ' ', 1, ' ', 4, ' '], [6, ' ', 4, ' ', ' ', ' ', ' ', ' ', 8], [' ', ' ', ' ', ' ', 6, ' ', 5, ' ', ' '], [1, 7, ' ', 2, ' ', 3, ' ', 9, ' '], [' ', ' ', ' ', ' ', ' ', ' ',' ', ' ', ' '], [' ', 3, ' ', 6, ' ', 9, ' ', 8, 7], [' ', ' ', 3, ' ', 9, ' ', ' ', ' ', ' '], [9, ' ', ' ', ' ', ' ', ' ', 6, ' ', 4], [' ', 1, ' ', 7, ' ', ' ', 3, ' ', ' ']]
 
 if __name__ == "__main__": # when the program is run...
@@ -229,5 +229,3 @@ in the board.) (If you want a hint, type h): ''')
                     print()
 
                 display_board()
-        # finally:
-        #     pass
