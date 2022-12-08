@@ -1,4 +1,4 @@
-'''to highlight the number entered by the user'''
+'''to highlight and un-highlight the number entered by the user'''
 
 # required colors below
 BACKGROUND_YELLOW = "\033[43m"
@@ -16,7 +16,7 @@ class highlightNumber:
         '''initialising the number entered by the user.[['''
         self.number = number
 
-    def highLight(self, _board: list, number):
+    def highLight(self, _board, number):
         '''to highlight the number entered by the user.'''
 
         for i in range(len(_board)):
