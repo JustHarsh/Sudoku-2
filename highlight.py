@@ -31,4 +31,4 @@ class highlightNumber:
         for i in range(len(_board)):
             for j in range(len(_board[i])):
                 if ("\x1b[1;31m\x1b[43m" + number + "\x1b[0m") == _board[i][j]:
-                    _board[i][j] = _board[i][j][12] # undoing the highlighting
+                    _board[i][j] = int(_board[i][j][12]) # undoing the highlighting
