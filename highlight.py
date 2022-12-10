@@ -13,7 +13,7 @@ class highlightNumber:
 
 
     def __init__(self, number):
-        '''initialising the number entered by the user.[['''
+        '''initialising the number entered by the user.'''
         self.number = number
 
     def highLight(self, _board, number):
