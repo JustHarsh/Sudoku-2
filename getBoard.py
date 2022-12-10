@@ -234,11 +234,13 @@ while True:
         break
     
     except:
-
-            if type(board) != list:
+            
+            # if the user does not enter a list
+            if type(board) != list: 
                 print(RED + "Your input is wrong! You must enter your board as a nested list." + NORMAL)
                 print()
 
+            # if the length of the board, or length of any of its nested list is NOT 9
             elif len(board) != 9 or len(board[1]) != 9 or len(board[2]) != 9 or len(board[3]) != 9:
                 print(RED + "Your input is wrong! Your input must be a 9x9 board!" + NORMAL)
                 print()
