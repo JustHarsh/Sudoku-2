@@ -9,8 +9,8 @@ from highlight import NORMAL, RED, PURPLE, GREEN, highlightNumber
 
 if __name__ == "__main__": # when the program is run...
 
-    game_on = True
-    possible_values = []
+    game_on = True # will be set to false as soon as all_cells_filled() returns True
+    possible_values = [] # for hints
 
     while game_on:
 
