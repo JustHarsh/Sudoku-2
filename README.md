@@ -1,4 +1,5 @@
 # Sudoku 2.0
+**Play sudoku with an interactive UI** 
 
 Updates from [previous Sudoku](https://github.com/JustHarsh/sudoku-python) version - 
 
