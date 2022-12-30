@@ -1,7 +1,7 @@
 '''main.py -> program is run from here.'''
 
 from rules import Rules
-from getBoard import board, fake_board, display_board, displayFake_board
+from getBoard import board, board_clone, display_board
 from highlight import NORMAL, RED, PURPLE, GREEN, highlightNumber
 
 # example board
@@ -52,24 +52,24 @@ in the board.) (If you want a hint, type h): ''')
                 if restriction.square_rule_violated(x, y, val):
                     print(RED + "Square rule violated! Try again." + NORMAL)
                     print()
-                    display_board()
+                    display_board(board)
 
                 elif restriction.vertical_rule_violated(x, y, val):
                     print(RED + "Vertical rule violated! Try again." + NORMAL)
                     print()
-                    display_board()
+                    display_board(board)
 
                 elif restriction.horizontal_rule_violated(x, y, val):
                     print(RED + "Horizontal rule violated! Try again." + NORMAL)
                     print()
-                    display_board()
+                    display_board(board)
 
                 else:
                     board[x-1][y-1] = PURPLE + str(val) + NORMAL
                     print()
-                    display_board()
+                    display_board(board)
 
-                    fake_board[x-1][y-1] = str(val)
+                    board_clone[x-1][y-1] = str(val)
                 
                 if restriction.all_cells_filled():
                     print(GREEN + "======================================================" + NORMAL)
@@ -84,11 +84,11 @@ in the board.) (If you want a hint, type h): ''')
                 assert attempt_cleaned[0].isdigit() 
                 
                 color_number = highlightNumber(attempt_cleaned[0]) # creating instance
-                color_number.highLight(fake_board, attempt_cleaned[0]) # highlighting
+                color_number.highLight(board_clone, attempt_cleaned[0]) # highlighting
 
-                displayFake_board(fake_board) # displaying the highlighted numbers
+                display_board(board_clone) # displaying the highlighted numbers
                 
-                color_number.removeHighlight(fake_board, attempt_cleaned[0]) # removing highlight
+                color_number.removeHighlight(board_clone, attempt_cleaned[0]) # removing highlight
 
                 del color_number # deleting instance
             
@@ -185,14 +185,14 @@ in the board.) (If you want a hint, type h): ''')
                     print(RED + "Your input is Wrong! The spot is not empty." + NORMAL)
                     print()
 
-                display_board()
+                display_board(board)
             
             elif len(attempt) == 1 and attempt != "h": # if user types just one letter or number.
 
                 if not attempt_cleaned[0].isdigit(): # if user enters a letter instead of number
                     print(RED + "Your input is wrong! If you want a hint then type h." + NORMAL)
                     print()
-                    displayFake_board(fake_board)
+                    display_board(board)
             
             elif attempt == "h": # when user wants hint but...
 
@@ -230,4 +230,4 @@ in the board.) (If you want a hint, type h): ''')
                     print(RED + "Your input is Wrong! The spot is not empty." + NORMAL)
                     print()
 
-                display_board()
+                display_board(board)
