@@ -1,6 +1,6 @@
 # Sudoku 2.0
 
-Updates from previous Sudoko version (can be found [here](https://github.com/JustHarsh/sudoku-python))
+Updates from [previous Sudoku](https://github.com/JustHarsh/sudoku-python) version - 
 
 - Board size changed to 9x9
 - More functionality added
