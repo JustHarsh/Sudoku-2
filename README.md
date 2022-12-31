@@ -11,6 +11,6 @@ Updates from [previous Sudoku](https://github.com/JustHarsh/sudoku-python) versi
   - Multiple errors caught now
     - Entering bogus inputs like letters
     - less numbers than required
-    - numbers out of range ... to name a few!
+    - numbers out of range ... **to name a few!**
     
 - Basic rule violations stay in-tact from the last version.
