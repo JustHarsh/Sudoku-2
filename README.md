@@ -14,3 +14,13 @@ Updates from [previous Sudoku](https://github.com/JustHarsh/sudoku-python) versi
     - numbers out of range ... **to name a few!**
     
 - Basic rule violations stay in-tact from the last version.
+
+# Running Instructions (from cmd/terminal) - 
+
+**For Windows users -**
+```python main.py```
+
+**For Mac/Linux users -**
+```python3 main.py```
+
+
