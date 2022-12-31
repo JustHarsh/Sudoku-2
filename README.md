@@ -4,8 +4,8 @@
 Updates from [previous Sudoku](https://github.com/JustHarsh/sudoku-python) version - 
 
 - Board size changed to 9x9
+- Play with numbers instead of letters
 - More functionality added
-  - Play with numbers instead of letters
   - Ability to highlight desired number on the board
   - Get hint for what numbers can be inputted in a coordinate of choice
   - Multiple errors caught now
